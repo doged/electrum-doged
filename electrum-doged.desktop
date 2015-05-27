@@ -1,0 +1,17 @@
+# If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum-doged.desktop
+
+[Desktop Entry]
+Comment=Lightweight DogecoinDark Client
+Exec=electrum-doged %u
+GenericName[en_US]=Electrum-DOGED
+GenericName=Electrum-DOGED
+Icon=electrum-doged
+Name[en_US]=Electrum DogecoinDark Wallet
+Name=Electrum DogecoinDark Wallet
+Categories=Network;
+StartupNotify=false
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/dogecoindark;
+

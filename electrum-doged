@@ -124,8 +124,8 @@ def arg_parser():
 
 def print_help(parser):
     parser.print_help()
-    print_msg("Type 'electrum-ltc help <command>' to see the help for a specific command")
-    print_msg("Type 'electrum-ltc --help' to see the list of options")
+    print_msg("Type 'electrum-doged help <command>' to see the help for a specific command")
+    print_msg("Type 'electrum-doged --help' to see the list of options")
     run_command(known_commands['help'])
 
 
@@ -212,12 +212,12 @@ if __name__ == '__main__':
     if len(args) == 0:
         url = None
         cmd = 'gui'
-    elif len(args) == 1 and re.match('^litecoin:', args[0]):
+    elif len(args) == 1 and re.match('^dogecoindark:', args[0]):
         url = args[0]
         cmd = 'gui'
     elif len(args) == 1 and args[0] not in known_commands and os.path.exists(args[0]):
         # fixme: assume this is a payment request
-        url = "litecoin:?r=file://"+ os.path.join(os.getcwd(), args[0])
+        url = "dogecoindark:?r=file://"+ os.path.join(os.getcwd(), args[0])
         cmd = 'gui'
     else:
         cmd = args[0]
@@ -258,7 +258,7 @@ if __name__ == '__main__':
     if cmd == 'daemon':
         arg = args[1] if len(args)>1 else None
         if arg not in ['start', 'stop', 'status']:
-            print_msg("syntax: electrum-ltc daemon <start|status|stop>")
+            print_msg("syntax: electrum-doged daemon <start|status|stop>")
             sys.exit(1)
         s = get_daemon(config, False)
         if arg == 'start':
@@ -369,7 +369,7 @@ if __name__ == '__main__':
 
     if cmd.name not in ['create', 'restore'] and cmd.requires_wallet and not storage.file_exists:
         print_msg("Error: Wallet file not found.")
-        print_msg("Type 'electrum-ltc create' to create a new wallet, or provide a path to a wallet with the -w option")
+        print_msg("Type 'electrum-doged create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
 
 

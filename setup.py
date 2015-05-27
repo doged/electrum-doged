@@ -20,13 +20,13 @@ data_files = []
 if platform.system() in [ 'Linux', 'FreeBSD', 'DragonFly']:
     usr_share = os.path.join(sys.prefix, "share")
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-ltc.desktop']),
-        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-ltc.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-doged.desktop']),
+        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-doged.png'])
     ]
 
 
 setup(
-    name="Electrum-LTC",
+    name="Electrum-DOGED",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'slowaes>=0.1a1',
@@ -34,23 +34,23 @@ setup(
         'pbkdf2',
         'requests',
         'qrcode',
-        'ltc_scrypt',
+        'doged_scrypt',
         'protobuf',
         'tlslite',
         'dnspython',
     ],
     package_dir={
-        'electrum_ltc': 'lib',
-        'electrum_ltc_gui': 'gui',
-        'electrum_ltc_plugins': 'plugins',
+        'electrum_doged': 'lib',
+        'electrum_doged_gui': 'gui',
+        'electrum_doged_plugins': 'plugins',
     },
-    packages=['electrum_ltc','electrum_ltc_gui','electrum_ltc_gui.qt','electrum_ltc_plugins'],
+    packages=['electrum_doged','electrum_doged_gui','electrum_doged_gui.qt','electrum_doged_plugins'],
     package_data={
-        'electrum_ltc': [
+        'electrum_doged': [
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ],
-        'electrum_ltc_gui': [
+        'electrum_doged_gui': [
             "qt/themes/cleanlook/name.cfg",
             "qt/themes/cleanlook/style.css",
             "qt/themes/sahara/name.cfg",
@@ -59,12 +59,12 @@ setup(
             "qt/themes/dark/style.css",
         ]
     },
-    scripts=['electrum-ltc'],
+    scripts=['electrum-doged'],
     data_files=data_files,
-    description="Lightweight Litecoin Wallet",
-    author="Thomas Voegtlin",
-    author_email="thomasv@electrum.org",
+    description="Lightweight DogecoinDark Wallet",
+    author="dogedDEV",
+    author_email="dogedcoin@twitter",
     license="GNU GPLv3",
-    url="http://electrum-ltc.org",
-    long_description="""Lightweight Litecoin Wallet"""
+    url="http://electrum-doged.space",
+    long_description="""Lightweight DogecoinDark Wallet"""
 )

@@ -7,14 +7,14 @@
 ;General
 
   ;Name and file
-  Name "Electrum-LTC"
-  OutFile "dist/electrum-ltc-setup.exe"
+  Name "Electrum-DOGED"
+  OutFile "dist/electrum-doged-setup.exe"
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\Electrum-LTC"
+  InstallDir "$PROGRAMFILES\Electrum-DOGED"
 
   ;Get installation folder from registry if available
-  InstallDirRegKey HKCU "Software\Electrum-LTC" ""
+  InstallDirRegKey HKCU "Software\Electrum-DOGED" ""
 
   ;Request application privileges for Windows Vista
   RequestExecutionLevel admin
@@ -36,7 +36,7 @@
 
   ;Start Menu Folder Page Configuration
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKCU"
-  !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\Electrum-LTC"
+  !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\Electrum-DOGED"
   !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
 
   ;!insertmacro MUI_PAGE_STARTMENU Application $StartMenuFolder
@@ -59,21 +59,21 @@ Section
   SetOutPath "$INSTDIR"
 
   ;ADD YOUR OWN FILES HERE...
-  file /r dist\electrum-ltc\*.*
+  file /r dist\electrum-doged\*.*
 
   ;Store installation folder
-  WriteRegStr HKCU "Software\Electrum-LTC" "" $INSTDIR
+  WriteRegStr HKCU "Software\Electrum-DOGED" "" $INSTDIR
 
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
 
 
-  CreateShortCut "$DESKTOP\Electrum-LTC.lnk" "$INSTDIR\electrum-ltc.exe" ""
+  CreateShortCut "$DESKTOP\Electrum-DOGED.lnk" "$INSTDIR\electrum-doged.exe" ""
 
   ;create start-menu items
-  CreateDirectory "$SMPROGRAMS\Electrum-LTC"
-  CreateShortCut "$SMPROGRAMS\Electrum-LTC\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\Electrum-LTC\Electrum-LTC.lnk" "$INSTDIR\electrum-ltc.exe" "" "$INSTDIR\electrum-ltc.exe" 0
+  CreateDirectory "$SMPROGRAMS\Electrum-DOGED"
+  CreateShortCut "$SMPROGRAMS\Electrum-DOGED\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\Electrum-DOGED\Electrum-DOGED.lnk" "$INSTDIR\electrum-doged.exe" "" "$INSTDIR\electrum-doged.exe" 0
 
 SectionEnd
 
@@ -95,10 +95,10 @@ Section "Uninstall"
 
   RMDir "$INSTDIR"
 
-  Delete "$DESKTOP\Electrum-LTC.lnk"
-  Delete "$SMPROGRAMS\Electrum-LTC\*.*"
-  RmDir  "$SMPROGRAMS\Electrum-LTC"
+  Delete "$DESKTOP\Electrum-DOGED.lnk"
+  Delete "$SMPROGRAMS\Electrum-DOGED\*.*"
+  RmDir  "$SMPROGRAMS\Electrum-DOGED"
 
-  DeleteRegKey /ifempty HKCU "Software\Electrum-LTC"
+  DeleteRegKey /ifempty HKCU "Software\Electrum-DOGED"
 
 SectionEnd

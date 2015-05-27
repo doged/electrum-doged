@@ -2115,7 +2115,7 @@ class ElectrumWindow(QMainWindow):
 
 
     def read_tx_from_qrcode(self):
-        from electrum_ltc import qrscanner
+        from electrum_doged import qrscanner
         try:
             data = qrscanner.scan_qr(self.config)
         except BaseException, e:
@@ -2173,7 +2173,7 @@ class ElectrumWindow(QMainWindow):
             self.show_transaction(tx)
 
     def do_process_from_txid(self):
-        from electrum_ltc import transaction
+        from electrum_doged import transaction
         txid, ok = QInputDialog.getText(self, _('Lookup transaction'), _('Transaction ID') + ':')
         if ok and txid:
             r = self.network.synchronous_get([ ('blockchain.transaction.get',[str(txid)]) ])[0]
@@ -2241,7 +2241,7 @@ class ElectrumWindow(QMainWindow):
         e.setReadOnly(True)
         vbox.addWidget(e)
 
-        defaultname = 'electrum-ltc-private-keys.csv'
+        defaultname = 'electrum-doged-private-keys.csv'
         select_msg = _('Select file to export your private keys to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2321,7 +2321,7 @@ class ElectrumWindow(QMainWindow):
     def do_export_labels(self):
         labels = self.wallet.labels
         try:
-            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-ltc_labels.dat', "*.dat")
+            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-doged_labels.dat', "*.dat")
             if fileName:
                 with open(fileName, 'w+') as f:
                     json.dump(labels, f)
@@ -2335,7 +2335,7 @@ class ElectrumWindow(QMainWindow):
         d.setWindowTitle(_('Export History'))
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
-        defaultname = os.path.expanduser('~/electrum-ltc-history.csv')
+        defaultname = os.path.expanduser('~/electrum-doged-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2484,7 +2484,7 @@ class ElectrumWindow(QMainWindow):
         lang_label = QLabel(_('Language') + ':')
         lang_help = HelpButton(_('Select which language is used in the GUI (after restart).'))
         lang_combo = QComboBox()
-        from electrum_ltc.i18n import languages
+        from electrum_doged.i18n import languages
         lang_combo.addItems(languages.values())
         try:
             index = languages.keys().index(self.config.get("language",''))
@@ -2574,7 +2574,7 @@ class ElectrumWindow(QMainWindow):
         block_ex_combo.currentIndexChanged.connect(on_be)
         widgets.append((block_ex_label, block_ex_combo, block_ex_help))
 
-        from electrum_ltc import qrscanner
+        from electrum_doged import qrscanner
         system_cameras = qrscanner._find_system_cameras()
         qr_combo = QComboBox()
         qr_combo.addItem("Default","default")
@@ -2657,7 +2657,7 @@ class ElectrumWindow(QMainWindow):
 
 
     def plugins_dialog(self):
-        from electrum_ltc.plugins import plugins, descriptions, is_available, loader
+        from electrum_doged.plugins import plugins, descriptions, is_available, loader
 
         self.pluginsdialog = d = QDialog(self)
         d.setWindowTitle(_('Electrum Plugins'))
@@ -2752,7 +2752,7 @@ class ElectrumWindow(QMainWindow):
 
     @protected
     def create_csr(self, alias, challenge, password):
-        from electrum_ltc import x509
+        from electrum_doged import x509
         import tlslite
         xprv = self.wallet.get_master_private_key(self.wallet.root_name, password)
         _, _, _, c, k = bitcoin.deserialize_xkey(xprv)

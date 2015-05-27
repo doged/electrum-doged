@@ -152,7 +152,7 @@ class SimpleConfig(object):
         new_path = os.path.join(self.path, "wallets", "default_wallet")
 
         # default path in pre 1.9 versions
-        old_path = os.path.join(self.path, "electrum-ltc.dat")
+        old_path = os.path.join(self.path, "electrum-doged.dat")
         if os.path.exists(old_path) and not os.path.exists(new_path):
             os.rename(old_path, new_path)
 
@@ -161,7 +161,7 @@ class SimpleConfig(object):
 
 
 def read_system_config(path=SYSTEM_CONFIG_PATH):
-    """Parse and return the system config settings in /etc/electrum-ltc.conf."""
+    """Parse and return the system config settings in /etc/electrum-doged.conf."""
     result = {}
     if os.path.exists(path):
         try:

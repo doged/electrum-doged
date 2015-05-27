@@ -1,7 +1,7 @@
 # -*- mode: python -*-
 
 # We don't put these files in to actually include them in the script but to make the Analysis method scan them for imports
-a = Analysis(['electrum-ltc', 'gui/qt/main_window.py', 'gui/qt/lite_window.py', 'gui/text.py',
+a = Analysis(['electrum-doged', 'gui/qt/main_window.py', 'gui/qt/lite_window.py', 'gui/text.py',
               'lib/util.py', 'lib/wallet.py', 'lib/simple_config.py',
               'lib/bitcoin.py', 'lib/blockchain.py'
               ],

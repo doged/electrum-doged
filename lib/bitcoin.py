@@ -324,12 +324,12 @@ def PrivKeyToSecret(privkey):
     return privkey[9:9+32]
 
 
-def SecretToASecret(secret, compressed=False, addrtype=48):
+def SecretToASecret(secret, compressed=False, addrtype=33):
     vchIn = chr((addrtype+128)&255) + secret
     if compressed: vchIn += '\01'
     return EncodeBase58Check(vchIn)
 
-def ASecretToSecret(key, addrtype=48):
+def ASecretToSecret(key, addrtype=33):
     vch = DecodeBase58Check(key)
     if vch and vch[0] == chr((addrtype+128)&255):
         return vch[1:]

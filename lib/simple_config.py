@@ -95,7 +95,7 @@ class SimpleConfig(object):
     def set_key(self, key, value, save = True):
         if not self.is_modifiable(key):
             print "Warning: not changing key '%s' because it is not modifiable" \
-                  " (passed as command line option or defined in /etc/electrum-ltc.conf)"%key
+                  " (passed as command line option or defined in /etc/electrum-doged.conf)"%key
             return
 
         with self.lock:

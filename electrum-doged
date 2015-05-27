@@ -67,15 +67,15 @@ except Exception:
 # load local module as electrum
 if is_bundle or is_local or is_android:
     import imp
-    imp.load_module('electrum_ltc', *imp.find_module('lib'))
-    imp.load_module('electrum_ltc_gui', *imp.find_module('gui'))
+    imp.load_module('electrum_doged', *imp.find_module('lib'))
+    imp.load_module('electrum_doged_gui', *imp.find_module('gui'))
 
 
-from electrum_ltc import util
-from electrum_ltc import SimpleConfig, Network, Wallet, WalletStorage, NetworkProxy, Commands, known_commands, pick_random_server
-from electrum_ltc.util import print_msg, print_error, print_stderr, print_json, set_verbosity, InvalidPassword
-from electrum_ltc.daemon import get_daemon
-from electrum_ltc.plugins import init_plugins
+from electrum_doged import util
+from electrum_doged import SimpleConfig, Network, Wallet, WalletStorage, NetworkProxy, Commands, known_commands, pick_random_server
+from electrum_doged.util import print_msg, print_error, print_stderr, print_json, set_verbosity, InvalidPassword
+from electrum_doged.daemon import get_daemon
+from electrum_doged.plugins import init_plugins
 
 
 # get password routine
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     parser = arg_parser()
     options, args = parser.parse_args()
     if options.portable and options.wallet_path is None:
-        options.electrum_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-ltc_data')
+        options.electrum_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-doged_data')
 
     # config is an object passed to the various constructors (wallet, interface, gui)
     if is_android:
@@ -231,7 +231,7 @@ if __name__ == '__main__':
         if gui_name in ['lite', 'classic']:
             gui_name = 'qt'
         try:
-            gui = __import__('electrum_ltc_gui.' + gui_name, fromlist=['electrum_ltc_gui'])
+            gui = __import__('electrum_doged_gui.' + gui_name, fromlist=['electrum_doged_gui'])
         except ImportError:
             traceback.print_exc(file=sys.stdout)
             sys.exit()

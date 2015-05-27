@@ -59,4 +59,4 @@ coll = COLLECT(exe,
                debug=False,
                icon='icons/electrum.ico',
                console=False,
-               name=os.path.join('dist', 'electrum-ltc'))
+               name=os.path.join('dist', 'electrum-doged'))

@@ -14,8 +14,14 @@ Homepage: https://electrum-doged.space/
 1. GETTING STARTED
 ------------------
 sudo apt-get install git
+
 sudo apt-get install python-pip
+
 sudo apt-get install python-dev
+
+sudo pip install pyrcc4
+
+pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 
 To run Electrum from this directory, just do:
 

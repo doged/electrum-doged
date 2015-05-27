@@ -3,8 +3,11 @@ Electrum-DOGED - lightweight DogecoinDark client
 ![Electrum-DOGED](https://raw.githubusercontent.com/doged/electrum-doged/master/electrumlogo.png)
 
 Licence: GNU GPL v3
+
 Author: sunerok
+
 Language: Python
+
 Homepage: https://electrum-doged.space/
 
 

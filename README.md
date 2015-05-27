@@ -13,6 +13,9 @@ Homepage: https://electrum-doged.space/
 
 1. GETTING STARTED
 ------------------
+sudo apt-get install git
+sudo apt-get install python-pip
+sudo apt-get install python-dev
 
 To run Electrum from this directory, just do:
 

@@ -19,6 +19,8 @@ sudo apt-get install python-pip
 
 sudo apt-get install python-dev
 
+sudo apt-get install python-dev-tools
+
 sudo pip install pyrcc4
 
 pyrcc4 icons.qrc -o gui/qt/icons_rc.py

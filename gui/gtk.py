@@ -24,18 +24,18 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GObject, cairo
 from decimal import Decimal
-from electrum_ltc.util import print_error, InvalidPassword
-from electrum_ltc.bitcoin import is_valid
-from electrum_ltc import WalletStorage, Wallet
+from electrum_doged.util import print_error, InvalidPassword
+from electrum_doged.bitcoin import is_valid
+from electrum_doged import WalletStorage, Wallet
 
 Gdk.threads_init()
-APP_NAME = "Electrum-LTC"
+APP_NAME = "Electrum-DOGED"
 import platform
 MONOSPACE_FONT = 'Lucida Console' if platform.system() == 'Windows' else 'monospace'
 
-from electrum_ltc.util import format_satoshis, parse_URI
-from electrum_ltc.network import DEFAULT_SERVERS
-from electrum_ltc.bitcoin import MIN_RELAY_TX_FEE
+from electrum_doged.util import format_satoshis, parse_URI
+from electrum_doged.network import DEFAULT_SERVERS
+from electrum_doged.bitcoin import MIN_RELAY_TX_FEE
 
 def numbify(entry, is_int = False):
     text = entry.get_text().strip()
@@ -457,7 +457,7 @@ class ElectrumWindow:
         self.num_zeros = int(self.config.get('num_zeros',0))
         self.window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
         self.window.connect('key-press-event', self.on_key)
-        title = 'Electrum-LTC ' + self.wallet.electrum_version + '  -  ' + self.config.path
+        title = 'Electrum-DOGED ' + self.wallet.electrum_version + '  -  ' + self.config.path
         if not self.wallet.seed: title += ' [seedless]'
         self.window.set_title(title)
         self.window.connect("destroy", Gtk.main_quit)
@@ -466,7 +466,7 @@ class ElectrumWindow:
         self.window.set_default_size(720, 350)
         self.wallet_updated = False
 
-        from electrum_ltc.util import StoreDict
+        from electrum_doged.util import StoreDict
         self.contacts = StoreDict(self.config, 'contacts')
 
         vbox = Gtk.VBox()
@@ -786,7 +786,7 @@ class ElectrumWindow:
             to_address = r
 
         if not is_valid(to_address):
-            self.show_message( "invalid litecoin address:\n"+to_address)
+            self.show_message( "invalid dogecoindark address:\n"+to_address)
             return
 
         try:

@@ -17,9 +17,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, time, re, threading
-from electrum_ltc.i18n import _, set_language
-from electrum_ltc.util import block_explorer, block_explorer_info, block_explorer_URL
-from electrum_ltc.util import print_error, print_msg
+from electrum_doged.i18n import _, set_language
+from electrum_doged.util import block_explorer, block_explorer_info, block_explorer_URL
+from electrum_doged.util import print_error, print_msg
 import os.path, json, ast, traceback
 import shutil
 import StringIO
@@ -30,17 +30,17 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_ltc.bitcoin import MIN_RELAY_TX_FEE, is_valid
-from electrum_ltc.plugins import run_hook
+from electrum_doged.bitcoin import MIN_RELAY_TX_FEE, is_valid
+from electrum_doged.plugins import run_hook
 
 import icons_rc
 
-from electrum_ltc.util import format_satoshis, format_time, NotEnoughFunds, StoreDict
-from electrum_ltc import Transaction
-from electrum_ltc import mnemonic
-from electrum_ltc import util, bitcoin, commands, Wallet
-from electrum_ltc import SimpleConfig, Wallet, WalletStorage
-from electrum_ltc import Imported_Wallet
+from electrum_doged.util import format_satoshis, format_time, NotEnoughFunds, StoreDict
+from electrum_doged import Transaction
+from electrum_doged import mnemonic
+from electrum_doged import util, bitcoin, commands, Wallet
+from electrum_doged import SimpleConfig, Wallet, WalletStorage
+from electrum_doged import Imported_Wallet
 
 from amountedit import AmountEdit, BTCAmountEdit, MyLineEdit
 from network_dialog import NetworkDialog
@@ -58,7 +58,7 @@ import csv
 
 
 
-from electrum_ltc import ELECTRUM_VERSION
+from electrum_doged import ELECTRUM_VERSION
 import re
 
 from util import *
@@ -79,8 +79,8 @@ class StatusBarButton(QPushButton):
             apply(self.func,())
 
 
-from electrum_ltc.paymentrequest import PR_UNPAID, PR_PAID, PR_EXPIRED
-from electrum_ltc.paymentrequest import PaymentRequest, InvoiceStore, get_payment_request, make_payment_request
+from electrum_doged.paymentrequest import PR_UNPAID, PR_PAID, PR_EXPIRED
+from electrum_doged.paymentrequest import PaymentRequest, InvoiceStore, get_payment_request, make_payment_request
 
 pr_icons = {
     PR_UNPAID:":icons/unpaid.png",
@@ -147,7 +147,7 @@ class ElectrumWindow(QMainWindow):
         if self.config.get("is_maximized"):
             self.showMaximized()
 
-        self.setWindowIcon(QIcon(":icons/electrum-ltc.png"))
+        self.setWindowIcon(QIcon(":icons/electrum-doged.png"))
         self.init_menubar()
 
         QShortcut(QKeySequence("Ctrl+W"), self, self.close)
@@ -202,7 +202,7 @@ class ElectrumWindow(QMainWindow):
         run_hook('close_wallet')
 
     def load_wallet(self, wallet):
-        import electrum_ltc as electrum
+        import electrum_doged as electrum
         self.wallet = wallet
         # backward compatibility
         self.update_wallet_format()
@@ -212,7 +212,7 @@ class ElectrumWindow(QMainWindow):
         self.dummy_address = a[0] if a else None
         self.accounts_expanded = self.wallet.storage.get('accounts_expanded',{})
         self.current_account = self.wallet.storage.get("current_account", None)
-        title = 'Electrum-LTC %s  -  %s' % (self.wallet.electrum_version, self.wallet.basename())
+        title = 'Electrum-DOGED %s  -  %s' % (self.wallet.electrum_version, self.wallet.basename())
         if self.wallet.is_watching_only():
             title += ' [%s]' % (_('watching only'))
         self.setWindowTitle( title )
@@ -403,20 +403,20 @@ class ElectrumWindow(QMainWindow):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-ltc.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-doged.space"))
         help_menu.addSeparator()
-        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://electrum.orain.org/")).setShortcut(QKeySequence.HelpContents)
+        help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://electrum-doged.space")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
 
         self.setMenuBar(menubar)
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-LTC",
+        QMessageBox.about(self, "Electrum-DOGED",
             _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Litecoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Litecoin system."))
 
     def show_report_bug(self):
-        QMessageBox.information(self, "Electrum-LTC - " + _("Reporting Bugs"),
-            _("Please report any bugs as issues on github:")+" <a href=\"https://github.com/pooler/electrum-ltc/issues\">https://github.com/pooler/electrum-ltc/issues</a>")
+        QMessageBox.information(self, "Electrum-DOGED - " + _("Reporting Bugs"),
+            _("Please report any bugs as issues on github:")+" <a href=\"https://github.com/doged/electrum-doged/issues\">https://github.com/doged/electrum-doged/issues</a>")
 
 
     def notify_transactions(self):
@@ -448,7 +448,7 @@ class ElectrumWindow(QMainWindow):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Electrum-LTC", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("Electrum-DOGED", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -498,9 +498,9 @@ class ElectrumWindow(QMainWindow):
         if self.decimal_point == 2:
             return 'bits'
         if self.decimal_point == 5:
-            return 'mLTC'
+            return 'mDOGED'
         if self.decimal_point == 8:
-            return 'LTC'
+            return 'DOGED'
         raise Exception('Unknown base unit')
 
     def update_status(self):
@@ -1241,7 +1241,7 @@ class ElectrumWindow(QMainWindow):
         try:
             address, amount, label, message, request_url = util.parse_URI(URI)
         except Exception as e:
-            QMessageBox.warning(self, _('Error'), _('Invalid litecoin URI:') + '\n' + str(e), _('OK'))
+            QMessageBox.warning(self, _('Error'), _('Invalid dogecoindark URI:') + '\n' + str(e), _('OK'))
             return
 
         self.tabs.setCurrentIndex(1)
@@ -1773,7 +1773,7 @@ class ElectrumWindow(QMainWindow):
         vbox.addWidget(QLabel(_('Account name')+':'))
         e = QLineEdit()
         vbox.addWidget(e)
-        msg = _("Note: Newly created accounts are 'pending' until they receive litecoins.") + " " \
+        msg = _("Note: Newly created accounts are 'pending' until they receive dogecoindarks.") + " " \
             + _("You will need to wait for 2 confirmations until the correct balance is displayed and more addresses are created for that account.")
         l = QLabel(msg)
         l.setWordWrap(True)
@@ -2124,7 +2124,7 @@ class ElectrumWindow(QMainWindow):
         if not data:
             return
         # if the user scanned a bitcoin URI
-        if data.startswith("litecoin:"):
+        if data.startswith("dogecoindark:"):
             self.pay_from_URI(data)
             return
         # else if the user scanned an offline signed tx
@@ -2532,22 +2532,22 @@ class ElectrumWindow(QMainWindow):
         fee_e.editingFinished.connect(on_fee)
         widgets.append((fee_label, fee_e, fee_help))
 
-        units = ['LTC', 'mLTC', 'bits']
+        units = ['DOGED', 'mDOGED', 'bits']
         unit_label = QLabel(_('Base unit') + ':')
         unit_combo = QComboBox()
         unit_combo.addItems(units)
         unit_combo.setCurrentIndex(units.index(self.base_unit()))
         msg = _('Base unit of your wallet.')\
-              + '\n1BTC=1000mLTC.\n' \
+              + '\n1BTC=1000mDOGED.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_help = HelpButton(msg)
         def on_unit(x):
             unit_result = units[unit_combo.currentIndex()]
             if self.base_unit() == unit_result:
                 return
-            if unit_result == 'LTC':
+            if unit_result == 'DOGED':
                 self.decimal_point = 8
-            elif unit_result == 'mLTC':
+            elif unit_result == 'mDOGED':
                 self.decimal_point = 5
             elif unit_result == 'bits':
                 self.decimal_point = 2

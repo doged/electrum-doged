@@ -23,9 +23,9 @@ import util
 from bitcoin import *
 
 try:
-    from ltc_scrypt import getPoWHash
+    from doged_scrypt import getPoWHash
 except ImportError:
-    print_msg("Warning: ltc_scrypt not available, using fallback")
+    print_msg("Warning: doged_scrypt not available, using fallback")
     from scrypt import scrypt_1024_1_1_80 as getPoWHash
 
 
@@ -36,7 +36,7 @@ class Blockchain(util.DaemonThread):
         self.config = config
         self.network = network
         self.lock = threading.Lock()
-        self.headers_url = 'http://headers.electrum-ltc.org/blockchain_headers'
+        self.headers_url = 'http://electrum-doged.space/blockchain_headers'
         self.queue = Queue.Queue()
         self.local_height = 0
         self.set_local_height()
@@ -230,7 +230,7 @@ class Blockchain(util.DaemonThread):
         max_target = 0x00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         if index == 0: return 0x1e0ffff0, 0x00000FFFF0000000000000000000000000000000000000000000000000000000
 
-        # Litecoin: go back the full period unless it's the first retarget
+        # DogecoinDark: go back the full period unless it's the first retarget
         if index == 1:
             first = self.read_header(0)
         else:

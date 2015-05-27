@@ -5,7 +5,7 @@ import os
 
 from util import user_dir, print_error, print_msg
 
-SYSTEM_CONFIG_PATH = "/etc/electrum-ltc.conf"
+SYSTEM_CONFIG_PATH = "/etc/electrum-doged.conf"
 
 config = None
 
@@ -167,7 +167,7 @@ def read_system_config(path=SYSTEM_CONFIG_PATH):
         try:
             import ConfigParser
         except ImportError:
-            print "cannot parse electrum-ltc.conf. please install ConfigParser"
+            print "cannot parse electrum-doged.conf. please install ConfigParser"
             return
 
         p = ConfigParser.ConfigParser()
@@ -181,7 +181,7 @@ def read_system_config(path=SYSTEM_CONFIG_PATH):
     return result
 
 def read_user_config(path):
-    """Parse and store the user config settings in electrum-ltc.conf into user_config[]."""
+    """Parse and store the user config settings in electrum-doged.conf into user_config[]."""
     if not path:
         return {}
     config_path = os.path.join(path, "config")

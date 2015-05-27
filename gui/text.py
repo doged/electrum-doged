@@ -2,11 +2,11 @@ import curses, datetime, locale
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum_ltc.util import format_satoshis, set_verbosity
-from electrum_ltc.util import StoreDict
-from electrum_ltc.bitcoin import is_valid
+from electrum_doged.util import format_satoshis, set_verbosity
+from electrum_doged.util import StoreDict
+from electrum_doged.bitcoin import is_valid
 
-from electrum_ltc import Wallet, WalletStorage
+from electrum_doged import Wallet, WalletStorage
 
 import tty, sys
 
@@ -19,7 +19,7 @@ class ElectrumGui:
         self.network = network
         storage = WalletStorage(config.get_wallet_path())
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum-ltc create'"
+            print "Wallet not found. try 'electrum-doged create'"
             exit()
 
         self.wallet = Wallet(storage)
@@ -294,7 +294,7 @@ class ElectrumGui:
 
     def do_send(self):
         if not is_valid(self.str_recipient):
-            self.show_message(_('Invalid Litecoin address'))
+            self.show_message(_('Invalid dogecoindarkcoin address'))
             return
         try:
             amount = int( Decimal( self.str_amount) * 100000000 )

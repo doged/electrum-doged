@@ -2,11 +2,11 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-import electrum_ltc as electrum
-from electrum_ltc.i18n import _
-from electrum_ltc import Wallet, Wallet_2of2, Wallet_2of3
-from electrum_ltc import bitcoin
-from electrum_ltc import util
+import electrum_doged as electrum
+from electrum_doged.i18n import _
+from electrum_doged import Wallet, Wallet_2of2, Wallet_2of3
+from electrum_doged import bitcoin
+from electrum_doged import util
 
 import seed_dialog
 from network_dialog import NetworkDialog
@@ -15,10 +15,10 @@ from amountedit import AmountEdit
 
 import sys
 import threading
-from electrum_ltc.plugins import always_hook
-from electrum_ltc.mnemonic import prepare_seed
+from electrum_doged.plugins import always_hook
+from electrum_doged.mnemonic import prepare_seed
 
-MSG_ENTER_ANYTHING    = _("Please enter a wallet seed, a master public key, a list of Litecoin addresses, or a list of private keys")
+MSG_ENTER_ANYTHING    = _("Please enter a wallet seed, a master public key, a list of doged addresses, or a list of private keys")
 MSG_SHOW_MPK          = _("This is your master public key")
 MSG_ENTER_MPK         = _("Please enter your master public key")
 MSG_ENTER_COLD_MPK    = _("Please enter the master public key of your cosigner wallet")

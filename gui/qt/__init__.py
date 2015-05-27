@@ -34,11 +34,11 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_ltc.i18n import _, set_language
-from electrum_ltc.util import print_error, print_msg
-from electrum_ltc.plugins import run_hook, always_hook
-from electrum_ltc import WalletStorage, Wallet
-from electrum_ltc.bitcoin import MIN_RELAY_TX_FEE
+from electrum_doged.i18n import _, set_language
+from electrum_doged.util import print_error, print_msg
+from electrum_doged.plugins import run_hook, always_hook
+from electrum_doged import WalletStorage, Wallet
+from electrum_doged.bitcoin import MIN_RELAY_TX_FEE
 
 try:
     import icons_rc
@@ -82,7 +82,7 @@ class ElectrumGui:
         m.addAction(_("Show/Hide"), self.show_or_hide)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        m.addAction(_("Exit Electrum-LTC"), self.close)
+        m.addAction(_("Exit Electrum-DOGED"), self.close)
         self.tray.setContextMenu(m)
 
     def toggle_tray_icon(self):
@@ -206,7 +206,7 @@ class ElectrumGui:
         self.dark_icon = self.config.get("dark_icon", False)
         icon = QIcon(":icons/electrum_dark_icon.png") if self.dark_icon else QIcon(':icons/electrum_light_icon.png')
         self.tray = QSystemTrayIcon(icon, None)
-        self.tray.setToolTip('Electrum-LTC')
+        self.tray.setToolTip('Electrum-DOGED')
         self.tray.activated.connect(self.tray_activated)
         self.build_tray_menu()
         self.tray.show()

@@ -17,18 +17,7 @@ from blockchain import Blockchain
 DEFAULT_PORTS = {'t':'50001', 's':'50002', 'h':'8081', 'g':'8082'}
 
 DEFAULT_SERVERS = {
-    'electrum.cryptomachine.com': DEFAULT_PORTS,
-    'electrum-ltc.bysh.me': DEFAULT_PORTS,
-    'electrum-ltc.koddos.com': DEFAULT_PORTS,
-    'electrum-ltc.thwg.org': DEFAULT_PORTS,
-    'electrum.dragonzone.net': {'t':'50003', 's':'50004'},
-    'electrum.litecoinguard.com': DEFAULT_PORTS,
-    'electrum.ltc.xurious.com': DEFAULT_PORTS,
-    'electrum.lurkmore.com': DEFAULT_PORTS,
-    'electrum.snicter.com': DEFAULT_PORTS,
-    'eltc.osl2.i2p.io': DEFAULT_PORTS,
-    'glacialsoftware.net': DEFAULT_PORTS,
-    'rho.hicapacity.org': DEFAULT_PORTS,
+    'electrum-doged.space': DEFAULT_PORTS,
 }
 
 NODES_RETRY_INTERVAL = 60

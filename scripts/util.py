@@ -1,13 +1,13 @@
-import time, electrum_ltc as electrum, Queue
-from electrum_ltc import Interface, SimpleConfig
-from electrum_ltc.network import filter_protocol, parse_servers
+import time, electrum_doged as electrum, Queue
+from electrum_doged import Interface, SimpleConfig
+from electrum_doged.network import filter_protocol, parse_servers
 
 # electrum.util.set_verbosity(1)
 
 def get_peers():
     # 1. start interface and wait for connection
     q = Queue.Queue()
-    interface = electrum.Interface('electrum-ltc.bysh.me:50002:s', q)
+    interface = electrum.Interface('electrum-doged.space:50002:s', q)
     interface.start()
     i, r = q.get()
     if not interface.is_connected():

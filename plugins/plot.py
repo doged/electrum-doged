@@ -1,10 +1,10 @@
 from PyQt4.QtGui import *
-from electrum_ltc.plugins import BasePlugin, hook
-from electrum_ltc.i18n import _
+from electrum_doged.plugins import BasePlugin, hook
+from electrum_doged.i18n import _
 
 
 import datetime
-from electrum_ltc.util import format_satoshis
+from electrum_doged.util import format_satoshis
 
 
 try:
@@ -108,7 +108,7 @@ class Plugin(BasePlugin):
         ax.add_artist(anchored_box)
 
 
-        plt.ylabel('mLTC')
+        plt.ylabel('mDOGED')
         plt.xlabel('Dates')
         xfmt = md.DateFormatter('%Y-%m-%d')
         ax.xaxis.set_major_formatter(xfmt)

@@ -93,13 +93,13 @@ def profiler(func):
 
 def user_dir():
     if "HOME" in os.environ:
-        return os.path.join(os.environ["HOME"], ".electrum-ltc")
+        return os.path.join(os.environ["HOME"], ".electrum-doged")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-LTC")
+        return os.path.join(os.environ["APPDATA"], "Electrum-DOGED")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-LTC")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-DOGED")
     elif 'ANDROID_DATA' in os.environ:
-        return "/sdcard/electrum-ltc/"
+        return "/sdcard/electrum-doged/"
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -189,18 +189,12 @@ def age(from_date, since_date = None, target_tz=None, include_seconds=False):
         return "over %d years ago" % (round(distance_in_minutes / 525600))
 
 block_explorer_info = {
-    'explorer.litecoin.net': ('http://explorer.litecoin.net',
+    'blockexperts.com/doged/': ('http://blockexperts.com/doged/',
                         {'tx': 'tx', 'addr': 'address'}),
-    'block-explorer.com': ('https://block-explorer.com',
-                        {'tx': 'tx', 'addr': 'address'}),
-    'Blockr.io': ('https://ltc.blockr.io',
-                        {'tx': 'tx/info', 'addr': 'address/info'}),
-    'SoChain': ('https://chain.so',
-                        {'tx': 'tx/LTC', 'addr': 'address/LTC'}),
 }
 
 def block_explorer(config):
-    return config.get('block_explorer', 'explorer.litecoin.net')
+    return config.get('block_explorer', 'blockexperts.com/doged/')
 
 def block_explorer_tuple(config):
     return block_explorer_info.get(block_explorer(config))
@@ -228,7 +222,7 @@ def parse_URI(uri):
         return uri, None, None, None, None
 
     u = urlparse.urlparse(uri)
-    assert u.scheme == 'litecoin'
+    assert u.scheme == 'dogecoindark'
 
     address = u.path
 
@@ -278,7 +272,7 @@ def create_URI(addr, amount, message):
         if type(message) == unicode:
             message = message.encode('utf8')
         query.append('message=%s'%urllib.quote(message))
-    p = urlparse.ParseResult(scheme='litecoin', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    p = urlparse.ParseResult(scheme='dogecoindark', netloc='', path=addr, params='', query='&'.join(query), fragment='')
     return urlparse.urlunparse(p)
 
 

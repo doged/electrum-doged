@@ -23,9 +23,9 @@ import util
 from bitcoin import *
 
 try:
-    from doged_scrypt import getPoWHash
+    from ltc_scrypt import getPoWHash
 except ImportError:
-    print_msg("Warning: doged_scrypt not available, using fallback")
+    print_msg("Warning: ltc_scrypt not available, using fallback")
     from scrypt import scrypt_1024_1_1_80 as getPoWHash
 
 

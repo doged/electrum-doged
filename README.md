@@ -13,13 +13,7 @@ Homepage: https://electrum-doged.space/
 
 1. GETTING STARTED
 ------------------
-sudo apt-get install git
-
-sudo apt-get install python-pip
-
-sudo apt-get install python-dev python-slowaes
-
-sudo pip install pyrcc4
+sudo apt-get install git pyqt4-dev-tools python-pip python-dev python-slowaes
 
 pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 

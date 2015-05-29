@@ -28,7 +28,7 @@ If you have pip, you can do:
 
   python setup.py sdist
   
-  sudo pip install --pre dist/Electrum-DOGED-2.0.tar.gz
+  sudo pip install --pre dist/Electrum-DOGED-2.2.0.1.tar.gz
 
 
 If you don't have pip, install with:

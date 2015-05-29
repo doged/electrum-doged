@@ -17,9 +17,7 @@ sudo apt-get install git
 
 sudo apt-get install python-pip
 
-sudo apt-get install python-dev
-
-sudo apt-get install python-dev-tools
+sudo apt-get install python-dev python-slowaes
 
 sudo pip install pyrcc4
 

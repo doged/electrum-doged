@@ -72,7 +72,9 @@ class SPV(util.DaemonThread):
         pos = result.get('pos')
         merkle_root = self.hash_merkle_root(result['merkle'], tx_hash, pos)
         header = self.network.get_header(tx_height)
-        if not header: return
+        if not header: 
+            self.print_error("No header found")
+            return
         if header.get('merkle_root') != merkle_root:
             self.print_error("merkle verification failed for", tx_hash)
             return

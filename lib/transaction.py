@@ -463,9 +463,21 @@ def deserialize(raw):
     d['version'] = vds.read_int32()
     d['nTime'] = vds.read_uint32()
     n_vin = vds.read_compact_size()
-    d['inputs'] = list(parse_input(vds) for i in xrange(n_vin))
+    d['inputs'] = []
+    for i in xrange(n_vin):
+            o = parse_TxIn(vds)
+            if not is_coinbase:
+                    d['inputs'].append(o)
     n_vout = vds.read_compact_size()
-    d['outputs'] = list(parse_output(vds,i) for i in xrange(n_vout))
+    d['outputs'] = []
+    for i in xrange(n_vout):
+            o = parse_TxOut(vds, i)
+
+            #if o['address'] == "None" and o['value']==0:
+            #        print("skipping strange tx output with zero value")
+            #        continue
+            # if o['address'] != "None":
+            d['outputs'].append(o)
     d['lockTime'] = vds.read_uint32()
     return d
 

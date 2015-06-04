@@ -107,7 +107,7 @@ def user_dir():
 def format_satoshis_plain(x):
     '''Display a satoshi amount in BTC with 8 decimal places.  Always
        uses a '.' as a decimal point and has no thousands separator'''
-    return "{:.8f}".format(x / 100000000.0)
+    return "{:.8f}".format(x / 1000000.0)
 
 def format_satoshis(x, is_diff=False, num_zeros = 0, decimal_point = 8, whitespaces=False):
     from locale import localeconv
@@ -245,7 +245,7 @@ def parse_URI(uri):
             k = int(m.group(2)) - 8
             amount = Decimal(m.group(1)) * pow(  Decimal(10) , k)
         else:
-            amount = Decimal(am) * 100000000
+            amount = Decimal(am) * 1000000
     if 'message' in pq:
         message = pq['message'][0].decode('utf8')
     if 'label' in pq:

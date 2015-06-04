@@ -1,4 +1,3 @@
-# Pastebin WVTjykTg
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 #
@@ -33,9 +32,9 @@ import aes
 ################################## transactions
 
 DUST_THRESHOLD = 0
-DUST_SOFT_LIMIT = 100000000
-MIN_RELAY_TX_FEE = 100000000
-RECOMMENDED_FEE = 100000000
+DUST_SOFT_LIMIT = 1000000
+MIN_RELAY_TX_FEE = 1000000
+RECOMMENDED_FEE = 1000000
 COINBASE_MATURITY = 100
 
 # AES encryption

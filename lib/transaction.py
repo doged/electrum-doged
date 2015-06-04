@@ -1,4 +1,3 @@
-# Pastebin KTqzvxxL
 #!/usr/bin/env python
 #
 # Electrum - lightweight Bitcoin client
@@ -498,11 +497,16 @@ class Transaction:
         self.locktime = d['lockTime']
 
     @classmethod
-    def from_io(klass, inputs, outputs, locktime=0):
+    def from_io(klass, inputs, outputs, locktime=0, nTime=0):
         self = klass(None)
         self.inputs = inputs
         self.outputs = outputs
         self.locktime = locktime
+        print("from_io")
+        if nTime == 0:
+            self.time = int(time.time()) # bitspill
+        else:
+            self.time = nTime
         #self.raw = self.serialize()
         return self
 
@@ -572,7 +576,7 @@ class Transaction:
                 script = '76a9'                                      # op_dup, op_hash_160
                 script += push_script(hash_160.encode('hex'))
                 script += '88ac'                                     # op_equalverify, op_checksig
-            elif addrtype == 33:
+            elif addrtype == 5:
                 script = 'a9'                                        # op_hash_160
                 script += push_script(hash_160.encode('hex'))
                 script += '87'                                       # op_equal
@@ -632,7 +636,10 @@ class Transaction:
     def serialize(self, for_sig=None):
         inputs = self.inputs
         outputs = self.outputs
+        time = self.time # bitspill
+        print("Serializing transaction: time: %d"%time)
         s  = int_to_hex(1,4)                                         # version
+        s += int_to_hex(time,4)   # bitspill                         # nTime
         s += var_int( len(inputs) )                                  # number of inputs
         for i, txin in enumerate(inputs):
             s += txin['prevout_hash'].decode('hex')[::-1].encode('hex')   # prev hash

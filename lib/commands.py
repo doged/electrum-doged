@@ -148,7 +148,7 @@ class Commands:
 
     def listunspent(self):
         l = copy.deepcopy(self.wallet.get_spendable_coins())
-        for i in l: i["value"] = str(Decimal(i["value"])/100000000)
+        for i in l: i["value"] = str(Decimal(i["value"])/1000000)
         return l
 
     def getaddressunspent(self, addr):
@@ -172,7 +172,7 @@ class Commands:
                     break
             else:
                 raise BaseException('Transaction output not in wallet', prevout_hash+":%d"%prevout_n)
-        outputs = map(lambda x: ('address', x[0], int(1e8*x[1])), outputs.items())
+        outputs = map(lambda x: ('address', x[0], int(1e6*x[1])), outputs.items())
         tx = Transaction.from_io(tx_inputs, outputs)
         return tx
 
@@ -237,17 +237,17 @@ class Commands:
             c, u, x = self.wallet.get_balance()
         else:
             c, u, x = self.wallet.get_account_balance(account)
-        out = {"confirmed": str(Decimal(c)/100000000)}
+        out = {"confirmed": str(Decimal(c)/1000000)}
         if u:
-            out["unconfirmed"] = str(Decimal(u)/100000000)
+            out["unconfirmed"] = str(Decimal(u)/1000000)
         if x:
-            out["unmatured"] = str(Decimal(x)/100000000)
+            out["unmatured"] = str(Decimal(x)/1000000)
         return out
 
     def getaddressbalance(self, addr):
         out = self.network.synchronous_get([ ('blockchain.address.get_balance',[addr]) ])[0]
-        out["confirmed"] =  str(Decimal(out["confirmed"])/100000000)
-        out["unconfirmed"] =  str(Decimal(out["unconfirmed"])/100000000)
+        out["confirmed"] =  str(Decimal(out["confirmed"])/1000000)
+        out["unconfirmed"] =  str(Decimal(out["unconfirmed"])/1000000)
         return out
 
     def getproof(self, addr):
@@ -285,7 +285,7 @@ class Commands:
         return out
 
     def sweep(self, privkey, to_address, fee = 0.0001):
-        fee = int(Decimal(fee)*100000000)
+        fee = int(Decimal(fee)*1000000)
         return Transaction.sweep([privkey], self.network, to_address, fee)
 
     def signmessage(self, address, message):
@@ -323,10 +323,10 @@ class Commands:
                     print_msg("alias", to_address)
                     break
 
-            amount = int(100000000*amount)
+            amount = int(1000000*amount)
             final_outputs.append(('address', to_address, amount))
 
-        if fee is not None: fee = int(100000000*fee)
+        if fee is not None: fee = int(1000000*fee)
         return self.wallet.mktx(final_outputs, self.password, fee , change_addr, domain)
 
     def mktx(self, to_address, amount, fee = None, change_addr = None, domain = None):

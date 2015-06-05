@@ -494,12 +494,12 @@ class ElectrumWindow(QMainWindow):
 
 
     def base_unit(self):
-        assert self.decimal_point in [2, 5, 8]
-        if self.decimal_point == 2:
+        assert self.decimal_point in [0, 3, 6]
+        if self.decimal_point == 0:
             return 'bits'
-        if self.decimal_point == 5:
+        if self.decimal_point == 3:
             return 'mDOGED'
-        if self.decimal_point == 8:
+        if self.decimal_point == 6:
             return 'DOGED'
         raise Exception('Unknown base unit')
 

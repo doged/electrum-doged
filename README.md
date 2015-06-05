@@ -4,7 +4,7 @@ Electrum-DOGED - lightweight DogecoinDark client
 
 Licence: GNU GPL v3
 
-Author: sunerok
+Author: sunerok, bitspill & whit3water
 
 Language: Python
 

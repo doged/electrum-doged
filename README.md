@@ -15,6 +15,8 @@ Homepage: https://electrum-doged.space/
 ------------------
 sudo apt-get install git pyqt4-dev-tools python-pip python-dev python-slowaes
 
+git clone https://github.com/doged/electrum-doged && cd electrum-doged
+
 pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 
 To run Electrum from this directory, just do:

@@ -107,7 +107,7 @@ def user_dir():
 def format_satoshis_plain(x):
     '''Display a satoshi amount in BTC with 8 decimal places.  Always
        uses a '.' as a decimal point and has no thousands separator'''
-    return "{:.8f}".format(x / 1000000.0)
+    return "{:.6f}".format(x / 1000000.0)
 
 def format_satoshis(x, is_diff=False, num_zeros = 0, decimal_point = 6, whitespaces=False):
     from locale import localeconv

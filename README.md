@@ -8,7 +8,7 @@ Author: sunerok, bitspill & whit3water
 
 Language: Python
 
-Homepage: https://electrum-doged.space/
+Homepage: http://electrum-doged.space/
 
 
 1. GETTING STARTED

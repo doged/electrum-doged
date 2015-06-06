@@ -1,10 +1,10 @@
 Electrum-DOGED - lightweight DogecoinDark client
-
+------------------------------------------------
 ![Electrum-DOGED](https://raw.githubusercontent.com/doged/electrum-doged/master/electrumlogo.png)
 
 Licence: GNU GPL v3
 
-Author: sunerok, bitspill & whit3water
+Authors: sunerok, bitspill & whit3water
 
 Language: Python
 
@@ -24,7 +24,7 @@ pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 sudo python setup.py install
 
 To run Electrum from this directory, just do:
-
+---------------------------------------------
   ./electrum-doged
 
 To start Electrum from your web browser, see
@@ -34,7 +34,9 @@ http://electrum-doged.space/DogecoinDark_URIs.html
 To update your copy of the electrum client:
 -------------------------------------------
 cd electrum-doged
+
 git pull
+
 sudo python setup.py install
 
 

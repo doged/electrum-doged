@@ -21,19 +21,21 @@ git clone https://github.com/doged/electrum-doged && cd electrum-doged
 
 pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 
+sudo python setup.py install
+
 To run Electrum from this directory, just do:
 
   ./electrum-doged
 
-----------------------------------------------------------
-  
-  sudo python setup.py install
-----------------------------------------------------------
-
-
 To start Electrum from your web browser, see
-
+--------------------------------------------
 http://electrum-doged.space/DogecoinDark_URIs.html
+
+To update your copy of the electrum client:
+-------------------------------------------
+cd electrum-doged
+git pull
+sudo python setup.py install
 
 
 

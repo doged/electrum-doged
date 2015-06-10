@@ -42,7 +42,8 @@ sudo python setup.py install
 1.b) GETTING STARTED WITH WINDOWS
 ------------------
 
--download this repo as a zip and extract it to where you would like it to run from.
+-download this repo as a zip and extract it to where you would like it to run from. 
+https://github.com/doged/electrum-doged/archive/master.zip
 
 -download python 2.7 for windows here: https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi
 

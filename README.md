@@ -49,7 +49,7 @@ https://github.com/doged/electrum-doged/archive/master.zip
 
 -download Microsoft Visual C++ Compiler for Python 2.7 here: http://www.microsoft.com/en-us/download/confirmation.aspx?id=44266
 
--download python qt4 http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.11.3/PyQt-win-gpl-4.11.3.zip/download
+-download python qt4: http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.11.3/PyQt4-4.11.3-gpl-Py2.7-Qt4.8.6-x64.exe
 
 -then in command prompt, type:
 

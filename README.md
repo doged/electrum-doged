@@ -51,15 +51,15 @@ https://github.com/doged/electrum-doged/archive/master.zip
 
 -download python qt4: http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.11.3/PyQt4-4.11.3-gpl-Py2.7-Qt4.8.6-x64.exe
 
--then in command prompt, type:
+-then in ms visual studio command prompt, go into the directory electrum-doged:
 
-py -m pip install pip pyasn1 pyasn1-modules pbkdf2 tlslite qrcode ecdsa
+pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 
-then go into the directory electrum-doged:
+py -m pip install pip pyasn1 pyasn1-modules pbkdf2 tlslite qrcode ecdsa ltc_scrypt
 
-type py setup.py install
+py setup.py install
 
-then py electrum-doged.py
+py electrum-doged
 
 
 

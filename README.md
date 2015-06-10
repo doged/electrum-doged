@@ -11,7 +11,7 @@ Language: Python
 Homepage: http://electrum-doged.space/
 
 
-1. GETTING STARTED
+1.a) GETTING STARTED WITH UBUNTU/LINUX
 ------------------
 sudo apt-get install git pyqt4-dev-tools python-pip python-dev python-slowaes
 
@@ -38,6 +38,27 @@ cd electrum-doged
 git pull
 
 sudo python setup.py install
+
+1.b) GETTING STARTED WITH WINDOWS
+------------------
+
+-download this repo as a zip and extract it to where you would like it to run from.
+
+-download python 2.7 for windows here: https://www.python.org/ftp/python/2.7.10/python-2.7.10.msi
+
+-download Microsoft Visual C++ Compiler for Python 2.7 here: http://www.microsoft.com/en-us/download/confirmation.aspx?id=44266
+
+-download python qt4 http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.11.3/PyQt-win-gpl-4.11.3.zip/download
+
+-then in command prompt, type:
+
+py -m pip install pip pyasn1 pyasn1-modules pbkdf2 tlslite qrcode ecdsa
+
+then go into the directory electrum-doged:
+
+type py setup.py install
+
+then py electrum-doged.py
 
 
 

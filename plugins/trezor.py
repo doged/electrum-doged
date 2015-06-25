@@ -301,7 +301,7 @@ class TrezorWallet(BIP32_HD_Wallet):
         except Exception, e:
             give_error(e)
         try:
-            self.get_client().get_address('Litecoin', address_n, True)
+            self.get_client().get_address('DogecoinDark', address_n, True)
         except Exception, e:
             give_error(e)
         finally:
@@ -316,7 +316,7 @@ class TrezorWallet(BIP32_HD_Wallet):
         except Exception, e:
             give_error(e)
         try:
-            msg_sig = self.get_client().sign_message('Litecoin', address_n, message)
+            msg_sig = self.get_client().sign_message('DogecoinDark', address_n, message)
         except Exception, e:
             give_error(e)
         finally:
@@ -333,7 +333,7 @@ class TrezorWallet(BIP32_HD_Wallet):
         inputs = self.tx_inputs(tx)
         outputs = self.tx_outputs(tx)
         try:
-            signed_tx = self.get_client().sign_tx('Litecoin', inputs, outputs)[1]
+            signed_tx = self.get_client().sign_tx('DogecoinDark', inputs, outputs)[1]
         except Exception, e:
             give_error(e)
         finally:
@@ -391,9 +391,9 @@ class TrezorWallet(BIP32_HD_Wallet):
                 txoutputtype.address = address
             txoutputtype.amount = amount
             addrtype, hash_160 = bc_address_to_hash_160(address)
-            if addrtype == 55:
+            if addrtype == 48:
                 txoutputtype.script_type = types.PAYTOADDRESS
-            elif addrtype == 28:
+            elif addrtype == 5:
                 txoutputtype.script_type = types.PAYTOSCRIPTHASH
             else:
                 raise BaseException('addrtype')

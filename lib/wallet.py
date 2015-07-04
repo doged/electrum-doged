@@ -835,6 +835,8 @@ class Abstract_Wallet(object):
         fee = int(self.fee_per_kb*estimated_size/1000.)
         if fee < MIN_RELAY_TX_FEE: # tx.required_fee(self):
             fee = MIN_RELAY_TX_FEE
+        if fee < tx.required_fee(self): # check fee meets the required fee
+            fee = tx.required_fee(self)
         return fee
 
     def make_unsigned_transaction(self, outputs, fixed_fee=None, change_addr=None, domain=None, coins=None ):

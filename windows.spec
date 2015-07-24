@@ -47,4 +47,4 @@ coll = COLLECT(exe,
                a.datas,
                strip=None,
                upx=True,
-               name='reddcoin-electrum')
+               name='electrum-doged')

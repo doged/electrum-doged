@@ -83,6 +83,24 @@ On Mac OS X:
   ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
   sudo hdiutil create -fs HFS+ -volname "Electrum-DOGED" -srcfolder dist/Electrum-DOGED.app dist/electrum-doged-VERSION-macosx.dmg
+  
+  alternate official build method:
+  
+On Windows:
+
+export VERSION=2.0.0
+
+pyinstaller windows.spec
+
+zip -r dist/reddcoin-electrum-$VERSION-win.zip dist/reddcoin-electrum.exe
+
+On Mac OS X:
+
+export VERSION=2.0.0
+
+pyinstaller macosx.spec
+
+sudo hdiutil create -fs HFS+ -volname "Reddcoin Electrum" -srcfolder "dist/Reddcoin Electrum.app" dist/reddcoin-electrum-$VERSION-mac.dmg
 
 
 [![Visit our IRC Chat!](https://kiwiirc.com/buttons/irc.freenode.net/dogecoindark.png)](https://kiwiirc.com/client/irc.freenode.net/?nick=doged|?&theme=cli#dogecoindark)

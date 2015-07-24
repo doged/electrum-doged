@@ -86,6 +86,10 @@ On Mac OS X:
   
   alternate official build method:
   
+On Linux:
+
+python setup.py sdist --format=gztar
+  
 On Windows:
 
 export VERSION=2.0.0
